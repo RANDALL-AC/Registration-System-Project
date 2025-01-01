@@ -11,3 +11,8 @@ void System::about() {
     std::cout << "\nEste sistema de matricula fue desarrollado por [ Inge. RANDALL ARAUZ CUBILLA ].\n";
     std::cout << "Para mas informacion o consultas al numero: 27325614 o 88125674.\n";
 }
+
+void System::exitSystem() {
+    std::cout << "Saliendo del sistema...\n";
+    exit(0);
+}
