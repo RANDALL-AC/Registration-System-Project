@@ -56,3 +56,13 @@ void Course::addSchedule(Schedule schedule) {
         std::cout << "Numero maximo de horarios para este curso alcanzado.\n";
     }
 }
+
+Schedule Course::getSchedule(int index) const {
+    if (index >= 0 && index < this->numSchedule) {
+        return this->schedules[index];
+    }
+    else {
+        std::cout << "Indice de horario invalido.\n";
+        return Schedule();
+    }
+}
