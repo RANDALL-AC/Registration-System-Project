@@ -8,6 +8,8 @@
 
 class Registration
 {
+public:
+
     Registration();
     Registration(Student student, Course course, Schedule schedule);
     ~Registration();
