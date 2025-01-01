@@ -59,11 +59,14 @@ void System::addStudent() {
 }
 
 void System::addCourse() {
-
+    if (numCourses >= maxCourses) {
+        std::cout << "Numero maximo de cursos alcanzado.\n";
+        return;
+    }
     std::string courseName, courseId, assignedProfessor, int credits;
     
     std::cout << "Ingrese el nombre del curso: "; std::cin >> courseName;
-    std::cout << "Ingrese el ID del curso: "; std::cin >> courseId;  
+    std::cout << "Ingrese el ID del curso: "; std::cin >> courseId; 
     std::cout << "Ingrese los creditos del curso: "; std::cin >> credits;
     std::cout << "Ingrese el profesor asignado: "; std::cin >> assignedProfessor;
 
