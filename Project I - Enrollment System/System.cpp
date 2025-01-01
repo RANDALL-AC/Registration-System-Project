@@ -57,3 +57,16 @@ void System::addStudent() {
     students[numStudents++] = Student(name, id, career, level);
     std::cout << "Estudiante agregado al sistema.\n";
 }
+
+void System::addCourse() {
+
+    std::string courseName, courseId, assignedProfessor, int credits;
+    
+    std::cout << "Ingrese el nombre del curso: "; std::cin >> courseName;
+    std::cout << "Ingrese el ID del curso: "; std::cin >> courseId;  
+    std::cout << "Ingrese los creditos del curso: "; std::cin >> credits;
+    std::cout << "Ingrese el profesor asignado: "; std::cin >> assignedProfessor;
+
+    courses[numCourses++] = Course(courseName, courseId, credits, assignedProfessor);
+    std::cout << "Curso agregado al sistema.\n";
+}
