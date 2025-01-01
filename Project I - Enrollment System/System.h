@@ -7,6 +7,7 @@
 #include "course.h"
 #include "schedule.h"
 #include "registration.h"
+#include "consultation.h"
 
 const int maxStudents = 20;
 const int maxCourses = 10;
@@ -34,6 +35,10 @@ public:
     void registerStudent();
     bool checkScheduleConflict(Student newStudent, Schedule newSchedule); 
 
+    void showConsultationMenu();
+    void showRegisteredStudent();
+    void showAssignedCourses();
+
 private:
 
     int numStudents = 0;
@@ -45,5 +50,6 @@ private:
     Course courses[maxCourses];
     Schedule schedules[maxSchedules];
     Registration registrations[maxStudents * maxCoursesPerStudents];
+    Consultation consultation;
 };
 #endif 
