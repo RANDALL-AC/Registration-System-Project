@@ -79,13 +79,28 @@ void System::addSchedule() {
         std::cout << "Numero maximo de horarios alcanzado.\n";
         return;
     }
+
     std::string day, startTime, endTime, classroom, courseId;
 
-    std::cout << "Ingrese el dia del horario: "; std::cin >> day;
-    std::cout << "Ingrese la hora de inicio (HHMM): "; std::cin >> startTime;
-    std::cout << "Ingrese la hora de fin (HHMM): "; std::cin >> endTime;
-    std::cout << "Ingrese el aula: "; std::cin >> classroom;
+    std::cout << "\nCursos disponibles para asignar Horario:\n";
+    for (int i = 0; i < numCourses; ++i) {
+        std::cout << i + 1 << ". " << courses[i].getCourseName() << " (ID: " << courses[i].getCourseId() << ")\n";
+    }
+
+    std::cout << "Ingrese el dia del horario: ";    std::cin >> day;
+    std::cout << "Ingrese la hora de inicio (HHMM): ";    std::cin >> startTime;
+    std::cout << "Ingrese la hora de fin (HHMM): ";   std::cin >> endTime;
+    std::cout << "Ingrese el aula: ";   std::cin >> classroom;
 
     Schedule newSchedule(day, startTime, endTime, classroom, courseId);
     schedules[numSchedules++] = newSchedule;
+
+    for (int i = 0; i < numCourses; ++i) {
+        if (courses[i].getCourseId() == courseId) {
+            courses[i].addSchedule(newSchedule);
+            break;
+        }
+    }
+
+    std::cout << "Horario agregado exitosamente al curso.\n";
 }
