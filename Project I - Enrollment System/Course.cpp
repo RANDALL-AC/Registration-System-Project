@@ -66,3 +66,7 @@ Schedule Course::getSchedule(int index) const {
         return Schedule();
     }
 }
+
+int Course::getNumSchedule() const {
+    return this->numSchedule;
+}
