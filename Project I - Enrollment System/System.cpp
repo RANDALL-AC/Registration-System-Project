@@ -73,3 +73,16 @@ void System::addCourse() {
     courses[numCourses++] = Course(courseName, courseId, credits, assignedProfessor);
     std::cout << "Curso agregado al sistema.\n";
 }
+
+void System::addSchedule() {
+
+    std::string day, startTime, endTime, classroom, courseId;
+
+    std::cout << "Ingrese el dia del horario: ";    std::cin >> day;
+    std::cout << "Ingrese la hora de inicio (HHMM): ";    std::cin >> startTime;
+    std::cout << "Ingrese la hora de fin (HHMM): ";   std::cin >> endTime;
+    std::cout << "Ingrese el aula: ";   std::cin >> classroom;
+
+    Schedule newSchedule(day, startTime, endTime, classroom, courseId);
+    schedules[numSchedules++] = newSchedule;
+}
