@@ -25,3 +25,14 @@ void Consultation::showCourseSchedule(Course course) {
             << ", Fin: " << schedule.getEndTime() << " )\n\n";
     }
 }
+
+void Consultation::showAssignedCourses(Course courses[], int numCourses) {
+    for (int i = 0; i < numCourses; ++i) {
+        std::cout << i + 1 << ". ID: " << courses[i].getCourseId()
+            << ", Nombre: " << courses[i].getCourseName()
+            << ", Creditos: " << courses[i].getCredits()
+            << ", Profesor Asignado: " << courses[i].getAssignedProfessor() << "\n";
+
+        showCourseSchedule(courses[i]);
+    }
+}
