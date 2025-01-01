@@ -24,6 +24,10 @@ public:
     void setCredits(int credits);
     void setAssignedProfessor(std::string assignedProfessor);
 
+    void addSchedule(Schedule schedule);
+    Schedule getSchedule(int index) const;
+    int getNumSchedule() const; 
+
 private:
     std::string courseName;
     std::string courseId;
@@ -31,5 +35,6 @@ private:
     std::string assignedProfessor;
 
     Schedule schedules[maxSchedulePerCourse];
+    int numSchedule = 0;
 };
 #endif
