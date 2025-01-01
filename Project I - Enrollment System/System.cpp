@@ -86,6 +86,15 @@ void System::addSchedule() {
     for (int i = 0; i < numCourses; ++i) {
         std::cout << i + 1 << ". " << courses[i].getCourseName() << " (ID: " << courses[i].getCourseId() << ")\n";
     }
+    std::cout << "Seleccione el numero del curso: ";
+    int courseSelection;
+    std::cin >> courseSelection;
+
+    if (courseSelection < 1 || courseSelection > numCourses) {
+        std::cout << "Seleccion de curso invalida.\n";
+        return;
+    }
+    courseId = courses[courseSelection - 1].getCourseId();
 
     std::cout << "Ingrese el dia del horario: ";    std::cin >> day;
     std::cout << "Ingrese la hora de inicio (HHMM): ";    std::cin >> startTime;
