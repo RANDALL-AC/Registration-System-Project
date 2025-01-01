@@ -132,12 +132,14 @@
     <ClCompile Include="Registration.cpp" />
     <ClCompile Include="Schedule.cpp" />
     <ClCompile Include="Student.cpp" />
+    <ClCompile Include="System.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Course.h" />
     <ClInclude Include="Registration.h" />
     <ClInclude Include="Schedule.h" />
     <ClInclude Include="Student.h" />
+    <ClInclude Include="System.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
