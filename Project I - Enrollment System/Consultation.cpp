@@ -41,16 +41,24 @@ void Consultation::showStudentCourses(Student student, Registration registration
     std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
     std::cout << "Cursos asignados al estudiante: (" << student.getId() << ") " << student.getName() << "\n\n";
 
+    int courseCount = 0;
     for (int j = 0; j < numRegistrations; ++j) {
         if (registrations[j].getStudent().getId() == student.getId()) {
-            std::cout << "Curso: " << registrations[j].getCourse().getCourseName()
+            std::cout << courseCount + 1 << ". Curso: " << registrations[j].getCourse().getCourseName()
                 << " (ID: " << registrations[j].getCourse().getCourseId()
                 << ") Creditos: " << registrations[j].getCourse().getCredits()
                 << ", Profesor: " << registrations[j].getCourse().getAssignedProfessor() << "\n";
 
             showCourseSchedule(registrations[j].getCourse());
+            courseCount++;
         }
     }
-    std::cout << "\nEl estudiante no tiene cursos matriculados.\n";
-    std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
+    if (courseCount > 0) {
+        std::cout << "Total de cursos matriculados: " << courseCount << "\n";
+        std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
+    }
+    else {
+        std::cout << "\nEl estudiante no tiene cursos matriculados.\n";
+        std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
+    }
 }
