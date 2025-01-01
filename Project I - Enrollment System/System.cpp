@@ -42,6 +42,35 @@ void System::exitSystem() {
     exit(0);
 }
 
+void System::showMaintenanceMenu() {
+    int option;
+    do {
+        std::cout << "\n--- Menu de Mantenimiento ---\n";
+        std::cout << "1. Estudiantes\n";
+        std::cout << "2. Cursos\n";
+        std::cout << "3. Horarios\n";
+        std::cout << "4. Volver\n";
+        std::cout << "Seleccione una opcion: ";
+        std::cin >> option;
+
+        switch (option) {
+        case 1:
+            addStudent();
+            break;
+        case 2:
+            addCourse();
+            break;
+        case 3:
+            addSchedule();
+            break;
+        case 4:
+            return;
+        default:
+            std::cout << "Opcion invalida. Intente de nuevo.\n";
+        }
+    } while (true);
+}
+
 void System::addStudent() {
     if (numStudents >= maxStudents) {
         std::cout << "Numero maximo de estudiantes alcanzado.\n";
