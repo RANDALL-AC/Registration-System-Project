@@ -96,6 +96,11 @@ void System::addSchedule() {
     }
     courseId = courses[courseSelection - 1].getCourseId();
 
+    if (courses[courseSelection - 1].getNumSchedule() >= maxSchedulePerCourse) {
+        std::cout << "Este curso ya ha alcanzado el número maximo de horarios permitidos.\n";
+        return;
+    }
+
     std::cout << "Ingrese el dia del horario: ";    std::cin >> day;
     std::cout << "Ingrese la hora de inicio (HHMM): ";    std::cin >> startTime;
     std::cout << "Ingrese la hora de fin (HHMM): ";   std::cin >> endTime;
