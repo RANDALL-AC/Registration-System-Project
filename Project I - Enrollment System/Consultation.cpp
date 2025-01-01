@@ -36,3 +36,21 @@ void Consultation::showAssignedCourses(Course courses[], int numCourses) {
         showCourseSchedule(courses[i]);
     }
 }
+
+void Consultation::showStudentCourses(Student student, Registration registrations[], int numRegistrations) {
+    std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
+    std::cout << "Cursos asignados al estudiante: (" << student.getId() << ") " << student.getName() << "\n\n";
+
+    for (int j = 0; j < numRegistrations; ++j) {
+        if (registrations[j].getStudent().getId() == student.getId()) {
+            std::cout << "Curso: " << registrations[j].getCourse().getCourseName()
+                << " (ID: " << registrations[j].getCourse().getCourseId()
+                << ") Creditos: " << registrations[j].getCourse().getCredits()
+                << ", Profesor: " << registrations[j].getCourse().getAssignedProfessor() << "\n";
+
+            showCourseSchedule(registrations[j].getCourse());
+        }
+    }
+    std::cout << "\nEl estudiante no tiene cursos matriculados.\n";
+    std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
+}
