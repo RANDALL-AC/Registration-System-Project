@@ -47,3 +47,12 @@ void Course::setCredits(int credits) {
 void Course::setAssignedProfessor(std::string assignedProfessor) {
     this->assignedProfessor = assignedProfessor;
 }
+
+void Course::addSchedule(Schedule schedule) {
+    if (this->numSchedule < maxSchedulePerCourse) {
+        this->schedules[this->numSchedule++] = schedule;
+    }
+    else {
+        std::cout << "Numero maximo de horarios para este curso alcanzado.\n";
+    }
+}
