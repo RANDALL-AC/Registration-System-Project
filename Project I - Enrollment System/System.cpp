@@ -43,7 +43,10 @@ void System::exitSystem() {
 }
 
 void System::addStudent() {
-  
+    if (numStudents >= maxStudents) {
+        std::cout << "Numero maximo de estudiantes alcanzado.\n";
+        return;
+    }
     std::string name, id, career; int level;
 
     std::cout << "Ingrese el nombre del estudiante: "; std::cin >> name;
