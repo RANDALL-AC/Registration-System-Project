@@ -2,6 +2,9 @@
 #ifndef COURSE_H
 #define COURSE_H
 #include <iostream>
+#include "Schedule.h"
+
+const int maxSchedulePerCourse = 1;
 
 class Course
 {
@@ -26,5 +29,7 @@ private:
     std::string courseId;
     int credits;
     std::string assignedProfessor;
+
+    Schedule schedules[maxSchedulePerCourse];
 };
 #endif
