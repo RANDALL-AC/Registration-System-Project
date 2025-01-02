@@ -261,6 +261,16 @@ void System::registerStudent() {
         students[studentIndex].addToTotalCost(registrationCost);
 
         registrations[numRegistrations++] = Registration(students[studentIndex], courses[courseIndex], matchedSchedule);
+        std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
+        std::cout << "Matricula registrada exitosamente para el curso de " << courses[courseIndex].getCourseName()
+            << " con el horario: Dia: ( " << matchedSchedule.getDay()
+            << ", Inicio: " << matchedSchedule.getStartTime()
+            << ", Fin: " << matchedSchedule.getEndTime() << " ).\n";
+
+        std::cout << "El costo para este curso es de: " << registrationCost << " colones.\n";
+        std::cout << "El costo total acumulado de la matricula es de: " << students[studentIndex].getTotalCost()
+            << " colones para el estudiante: (" << students[studentIndex].getId() << ") " << students[studentIndex].getName() << "\n";
+        std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
         studentCourseCount++;
     }
     std::cout << "El estudiante ha alcanzado el numero maximo de cursos permitidos.\n";
