@@ -225,5 +225,23 @@ void System::registerStudent() {
             std::cout << "El curso ya ha sido matriculado por este estudiante.\n";
             continue;
         }
+
+        std::string day, startTime, endTime;
+        std::cout << "Ingrese el dia del horario: "; std::cin >> day;
+        std::cout << "Ingrese la hora de inicio (HHMM): "; std::cin >> startTime;
+        std::cout << "Ingrese la hora de fin (HHMM): ";  std::cin >> endTime;
+
+        bool scheduleMatch = false;
+        for (int i = 0; i < courses[courseIndex].getNumSchedule(); ++i) {
+            Schedule schedule = courses[courseIndex].getSchedule(i);
+            if (schedule.getDay() == day && schedule.getStartTime() == startTime && schedule.getEndTime() == endTime) {
+                scheduleMatch = true;
+                break;
+            }
+        }
+        if (!scheduleMatch) {
+            std::cout << "El horario ingresado no coincide con ningun horario asignado a este curso.\n";
+            continue;
+        }
     }
 }
