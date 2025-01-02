@@ -256,6 +256,7 @@ void System::registerStudent() {
             continue;
         }
     }
+    std::cout << "El estudiante ha alcanzado el numero maximo de cursos permitidos.\n";
 }
 
 bool System::checkScheduleConflict(Student student, Schedule newSchedule) {
