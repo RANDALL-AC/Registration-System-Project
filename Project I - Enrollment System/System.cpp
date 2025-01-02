@@ -147,3 +147,24 @@ void System::addSchedule() {
 
     std::cout << "Horario agregado exitosamente al curso.\n";
 }
+
+void System::registerStudent() {
+
+    int studentIndex = -1;
+    std::string studentId;
+
+    std::cout << "Ingrese el ID del estudiante: ";
+    std::cin >> studentId;
+
+    for (int i = 0; i < numStudents; ++i) {
+        if (students[i].getId() == studentId) {
+            studentIndex = i;
+            break;
+        }
+    }
+
+    if (studentIndex == -1) {
+        std::cout << "Estudiante no encontrado.\n";
+        return;
+    }
+}
