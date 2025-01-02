@@ -187,5 +187,12 @@ void System::registerStudent() {
             std::cout << "No hay cursos disponibles\n";
         }
         std::cout << "-------------------------------------------------------------------------------------------------------------\n";
+
+        for (int i = 0; i < numCourses; ++i) {
+            if (courses[i].getNumSchedule() == 0) {
+                std::cout << i + 1 << ". " << courses[i].getCourseName()
+                    << " (ID: " << courses[i].getCourseId() << ") - No hay horarios disponibles\n";
+            }
+        }
     }
 }
