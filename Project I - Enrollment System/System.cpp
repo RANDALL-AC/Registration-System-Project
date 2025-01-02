@@ -149,6 +149,10 @@ void System::addSchedule() {
 }
 
 void System::registerStudent() {
+    if (numRegistrations > maxStudents * maxCoursesPerStudents) {
+        std::cout << "Numero maximo de matriculas alcanzado.\n";
+        return;
+    }
 
     int studentIndex = -1;
     std::string studentId;
