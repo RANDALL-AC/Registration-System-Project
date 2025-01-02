@@ -255,6 +255,13 @@ void System::registerStudent() {
             std::cout << "Conflicto de horario detectado. No se puede agregar el horario.\n";
             continue;
         }
+
+        const int costPerCredit = 2500;
+        int registrationCost = courses[courseIndex].getCredits() * costPerCredit;
+        students[studentIndex].addToTotalCost(registrationCost);
+
+        registrations[numRegistrations++] = Registration(students[studentIndex], courses[courseIndex], matchedSchedule);
+        studentCourseCount++;
     }
     std::cout << "El estudiante ha alcanzado el numero maximo de cursos permitidos.\n";
 }
