@@ -196,8 +196,13 @@ void System::registerStudent() {
         }
 
         std::string courseId;
-        std::cout << "\nIngrese el codigo del curso a matricular: ";
+        std::cout << "\nIngrese el codigo del curso a matricular (o 0 para salir): ";
         std::cin >> courseId;
+
+        if (courseId == "0") {
+            std::cout << "Saliendo del proceso de matriculacion.\n";
+            return;
+        }
 
         int courseIndex = -1;
         for (int i = 0; i < numCourses; ++i) {
