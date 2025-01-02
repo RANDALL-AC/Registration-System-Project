@@ -171,4 +171,21 @@ void System::registerStudent() {
         std::cout << "Estudiante no encontrado.\n";
         return;
     }
+
+    int studentCourseCount = 0;
+    for (int i = 0; i < numRegistrations; ++i) {
+        if (registrations[i].getStudent().getId() == students[studentIndex].getId()) {
+            studentCourseCount++;
+        }
+    }
+
+    while (studentCourseCount < maxCoursesPerStudents) {
+
+        std::cout << "\nCursos Disponibles:\n";
+        consultation.showAssignedCourses(courses, numCourses);
+        if (numCourses == 0) {
+            std::cout << "No hay cursos disponibles\n";
+        }
+        std::cout << "-------------------------------------------------------------------------------------------------------------\n";
+    }
 }
