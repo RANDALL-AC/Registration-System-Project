@@ -245,3 +245,24 @@ void System::registerStudent() {
         }
     }
 }
+
+bool System::checkScheduleConflict(Student student, Schedule newSchedule) {
+    for (int i = 0; i < numRegistrations; ++i) {
+        if (registrations[i].getStudent().getId() == student.getId()) {
+            Schedule existingSchedule = registrations[i].getSchedule();
+
+            if (existingSchedule.getDay() != newSchedule.getDay()) {
+                continue;
+            }
+
+            if ((newSchedule.getStartTime() >= existingSchedule.getStartTime() && newSchedule.getStartTime() < existingSchedule.getEndTime()) ||
+                (newSchedule.getEndTime() > existingSchedule.getStartTime() && newSchedule.getEndTime() <= existingSchedule.getEndTime()) ||
+                (newSchedule.getStartTime() <= existingSchedule.getStartTime() && newSchedule.getEndTime() >= existingSchedule.getEndTime()) ||
+                (newSchedule.getStartTime() == existingSchedule.getEndTime()) ||
+                (newSchedule.getEndTime() == existingSchedule.getStartTime())) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
