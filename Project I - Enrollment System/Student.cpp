@@ -47,3 +47,11 @@ void Student::setCareer(std::string career) {
 void Student::setLevel(int level) {
     this->level = level;
 }
+
+int Student::getTotalCost() const { 
+    return totalCost;
+}
+
+void Student::addToTotalCost(int cost) { 
+    totalCost += cost;
+}
