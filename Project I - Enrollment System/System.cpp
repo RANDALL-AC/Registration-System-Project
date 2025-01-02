@@ -211,5 +211,19 @@ void System::registerStudent() {
             std::cout << "Codigo de curso invalido o curso sin horarios asignados.\n";
             continue;
         }
+
+        bool alreadyRegistered = false;
+        for (int i = 0; i < numRegistrations; ++i) {
+            if (registrations[i].getStudent().getId() == students[studentIndex].getId() &&
+                registrations[i].getCourse().getCourseId() == courses[courseIndex].getCourseId()) {
+                alreadyRegistered = true;
+                break;
+            }
+        }
+
+        if (alreadyRegistered) {
+            std::cout << "El curso ya ha sido matriculado por este estudiante.\n";
+            continue;
+        }
     }
 }
