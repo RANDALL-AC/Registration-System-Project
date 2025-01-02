@@ -194,5 +194,22 @@ void System::registerStudent() {
                     << " (ID: " << courses[i].getCourseId() << ") - No hay horarios disponibles\n";
             }
         }
+
+        std::string courseId;
+        std::cout << "\nIngrese el codigo del curso a matricular: ";
+        std::cin >> courseId;
+
+        int courseIndex = -1;
+        for (int i = 0; i < numCourses; ++i) {
+            if (courses[i].getCourseId() == courseId) {
+                courseIndex = i;
+                break;
+            }
+        }
+
+        if (courseIndex == -1 || courses[courseIndex].getNumSchedule() == 0) {
+            std::cout << "Codigo de curso invalido o curso sin horarios asignados.\n";
+            continue;
+        }
     }
 }
