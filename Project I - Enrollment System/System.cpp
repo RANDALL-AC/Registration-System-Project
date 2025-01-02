@@ -148,6 +148,27 @@ void System::addSchedule() {
     std::cout << "Horario agregado exitosamente al curso.\n";
 }
 
+void System::showRegistrationMenu() {
+    int option;
+    do {
+        std::cout << "\n--- Menu de Matricula ---\n";
+        std::cout << "1. Registro de Matricula\n";
+        std::cout << "2. Volver\n";
+        std::cout << "Seleccione una opcion: ";
+        std::cin >> option;
+
+        switch (option) {
+        case 1:
+            registerStudent();
+            break;
+        case 2:
+            return;
+        default:
+            std::cout << "Opcion invalida. Intente de nuevo.\n";
+        }
+    } while (true);
+}
+
 void System::registerStudent() {
     if (numRegistrations > maxStudents * maxCoursesPerStudents) {
         std::cout << "Numero maximo de matriculas alcanzado.\n";
