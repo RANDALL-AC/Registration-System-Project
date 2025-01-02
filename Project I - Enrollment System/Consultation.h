@@ -10,6 +10,7 @@
 
 class Consultation
 {
+public:
     void showRegisteredStudent(Student student, int courseCount);
     void showAssignedCourses(Course courses[], int numCourses);
     void showStudentCourses(Student student, Registration registrations[], int numRegistrations);
