@@ -18,10 +18,16 @@ public:
     void setId(std::string id);
     void setCareer(std::string career);
     void setLevel(int level);
+
+    int getTotalCost() const; 
+    void addToTotalCost(int cost);
+
 private:
     std::string name;
     std::string id;
     std::string career;
     int level;
+
+    int totalCost = 0;
 };
 #endif
