@@ -232,15 +232,22 @@ void System::registerStudent() {
         std::cout << "Ingrese la hora de fin (HHMM): ";  std::cin >> endTime;
 
         bool scheduleMatch = false;
+        Schedule matchedSchedule;
         for (int i = 0; i < courses[courseIndex].getNumSchedule(); ++i) {
             Schedule schedule = courses[courseIndex].getSchedule(i);
             if (schedule.getDay() == day && schedule.getStartTime() == startTime && schedule.getEndTime() == endTime) {
+                matchedSchedule = schedule;
                 scheduleMatch = true;
                 break;
             }
         }
         if (!scheduleMatch) {
             std::cout << "El horario ingresado no coincide con ningun horario asignado a este curso.\n";
+            continue;
+        }
+
+        if (checkScheduleConflict(students[studentIndex], matchedSchedule)) {
+            std::cout << "Conflicto de horario detectado. No se puede agregar el horario.\n";
             continue;
         }
     }
