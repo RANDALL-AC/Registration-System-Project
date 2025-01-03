@@ -3,6 +3,7 @@
 #define SYSTEM_H
 
 #include <iostream>
+#include <vector>
 #include "student.h"
 #include "course.h"
 #include "schedule.h"
@@ -46,10 +47,10 @@ private:
     int numSchedules = 0;
     int numRegistrations = 0;
 
-    Student students[maxStudents];
-    Course courses[maxCourses];
-    Schedule schedules[maxSchedules];
-    Registration registrations[maxStudents * maxCoursesPerStudents];
+    std::vector<Student> students;
+    std::vector<Schedule> schedules;
+    std::vector<Course> courses;
+    std::vector<Registration> registrations;
     Consultation consultation;
 };
 #endif 
