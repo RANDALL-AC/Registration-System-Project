@@ -341,3 +341,16 @@ void System::showRegisteredStudent() {
         std::cout << "Estudiante no registrado o matriculado actualmente.\n";
     }
 }
+
+void System::showAssignedCourses() {
+    std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
+    std::cout << "Cursos ofertados:\n\n";
+    consultation.showAssignedCourses(courses, numCourses);
+
+    for (int i = 0; i < numCourses; ++i) {
+        if (courses[i].getNumSchedule() == 0) {
+            std::cout << " - No hay horarios disponibles para este curso.";
+        }
+    }
+    std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
+}
