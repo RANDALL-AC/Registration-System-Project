@@ -1,10 +1,10 @@
 #include "System.h"
 
-System::System() {
-    numStudents = 0;
-    numCourses = 0;
-    numSchedules = 0;
-    numRegistrations = 0;
+System::System() { 
+    students.reserve(maxStudents);
+    schedules.reserve(maxSchedules);
+    courses.reserve(maxCourses);
+    registrations.reserve(maxStudents * maxCoursesPerStudents);
 }
 
 void System::showMenu() {
