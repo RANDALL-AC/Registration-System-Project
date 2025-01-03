@@ -3,6 +3,7 @@
 #define CONSULTATION_H
 
 #include <iostream>
+#include <vector>
 #include "student.h"
 #include "course.h"
 #include "schedule.h"
@@ -11,9 +12,11 @@
 class Consultation
 {
 public:
+
     void showRegisteredStudent(Student student, int courseCount, int totalCost);
-    void showAssignedCourses(Course courses[], int numCourses);
-    void showStudentCourses(Student student, Registration registrations[], int numRegistrations);
-    void showCourseSchedule(Course course);
+    void showAssignedCourses(std::vector<Course>& courses);
+    void showStudentCourses(Student& student, std::vector<Registration>& registrations);
+    void showCourseSchedule(Course& course);
+
 };
 #endif
