@@ -353,4 +353,20 @@ void System::showAssignedCourses() {
         }
     }
     std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
+
+    std::string studentId;
+    std::cout << "\nIngrese el ID del estudiante para ver los cursos matriculados: ";
+    std::cin >> studentId;
+
+    bool found = false;
+    for (int i = 0; i < numStudents; ++i) {
+        if (students[i].getId() == studentId) {
+            consultation.showStudentCourses(students[i], registrations, numRegistrations);
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        std::cout << "\nEstudiante no registrado en el sistema actualmente.\n";
+    }
 }
