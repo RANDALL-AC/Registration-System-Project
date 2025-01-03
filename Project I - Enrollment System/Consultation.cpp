@@ -16,7 +16,7 @@ void Consultation::showRegisteredStudent(Student student, int courseCount, int t
     }
 }
 
-void Consultation::showCourseSchedule(Course course) {
+void Consultation::showCourseSchedule(Course& course) {
     std::cout << "Horarios del curso de " << course.getCourseName() << ": ";
     for (int i = 0; i < course.getNumSchedule(); ++i) {
         Schedule schedule = course.getSchedule(i);
@@ -27,23 +27,23 @@ void Consultation::showCourseSchedule(Course course) {
     }
 }
 
-void Consultation::showAssignedCourses(Course courses[], int numCourses) {
-    for (int i = 0; i < numCourses; ++i) {
-        std::cout << i + 1 << ". Nombre: " << courses[i].getCourseName()
-            << " (ID: " << courses[i].getCourseId()
-            << "), Creditos: " << courses[i].getCredits()
+void Consultation::showAssignedCourses(std::vector<Course>& courses) {
+    for (int i = 0; i < courses.size(); ++i) {
+        std::cout << i + 1 << ". ID: " << courses[i].getCourseId()
+            << ", Nombre: " << courses[i].getCourseName()
+            << ", Creditos: " << courses[i].getCredits()
             << ", Profesor Asignado: " << courses[i].getAssignedProfessor() << "\n";
 
         showCourseSchedule(courses[i]);
     }
 }
 
-void Consultation::showStudentCourses(Student student, Registration registrations[], int numRegistrations) {
+void Consultation::showStudentCourses(Student& student, std::vector<Registration>& registrations) {
     std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
     std::cout << "Cursos asignados al estudiante: (" << student.getId() << ") " << student.getName() << "\n\n";
 
     int courseCount = 0;
-    for (int j = 0; j < numRegistrations; ++j) {
+    for (int j = 0; j < registrations.size(); ++j) {
         if (registrations[j].getStudent().getId() == student.getId()) {
             std::cout << courseCount + 1 << ". Curso: " << registrations[j].getCourse().getCourseName()
                 << " (ID: " << registrations[j].getCourse().getCourseId()
@@ -54,12 +54,12 @@ void Consultation::showStudentCourses(Student student, Registration registration
             courseCount++;
         }
     }
-    if (courseCount > 0) {
-        std::cout << "Total de cursos matriculados: " << courseCount << "\n";
-        std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
+
+    if (courseCount == 0) {
+        std::cout << "\nEl estudiante no tiene cursos matriculados.\n";
     }
     else {
-        std::cout << "\nEl estudiante no tiene cursos matriculados.\n";
-        std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
+        std::cout << "Total de cursos matriculados: " << courseCount << "\n";
     }
+    std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
 }
