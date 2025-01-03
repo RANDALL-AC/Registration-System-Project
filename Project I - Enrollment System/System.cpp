@@ -7,6 +7,36 @@ System::System() {
     numRegistrations = 0;
 }
 
+void System::showMenu() {
+    int option;
+    do {
+        std::cout << "\n--- Menu Principal ---\n";
+        std::cout << "1. Archivo\n";
+        std::cout << "2. Mantenimiento\n";
+        std::cout << "3. Matricula\n";
+        std::cout << "4. Consulta\n";
+        std::cout << "Seleccione una opcion: ";
+        std::cin >> option;
+
+        switch (option) {
+        case 1:
+            showFileMenu();
+            break;
+        case 2:
+            showMaintenanceMenu();
+            break;
+        case 3:
+            showRegistrationMenu();
+            break;
+        case 4:
+            showConsultationMenu();
+            break;
+        default:
+            std::cout << "Opcion no valida. Intente de nuevo.\n";
+        }
+    } while (true);
+}
+
 void System::showFileMenu() {
     int option;
     do {
