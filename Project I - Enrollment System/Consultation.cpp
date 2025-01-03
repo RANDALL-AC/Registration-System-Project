@@ -1,13 +1,14 @@
 #include "Consultation.h"
 
-void Consultation::showRegisteredStudent(Student student, int courseCount) {
+void Consultation::showRegisteredStudent(Student student, int courseCount, int totalCost) {
     if (courseCount > 0) {
         std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
         printf("\nDatos del estudiante matriculado:\n");
         std::cout << "Nombre: " << student.getName()
             << ", Cedula: " << student.getId()
             << ", Carrera: " << student.getCareer()
-            << ", Nivel: " << student.getLevel();
+            << ", Nivel: " << student.getLevel()
+            << ", Costo de la matricula: " << totalCost << " colones.\n";
         std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
     }
     else {
