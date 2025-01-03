@@ -238,14 +238,12 @@ void System::registerStudent() {
         if (numCourses == 0) {
             std::cout << "No hay cursos disponibles\n";
         }
-        std::cout << "-------------------------------------------------------------------------------------------------------------\n";
-
         for (int i = 0; i < numCourses; ++i) {
             if (courses[i].getNumSchedule() == 0) {
-                std::cout << i + 1 << ". " << courses[i].getCourseName()
-                    << " (ID: " << courses[i].getCourseId() << ") - No hay horarios disponibles\n";
+                std::cout << " - No hay horarios disponibles para este curso.\n";
             }
         }
+        std::cout << "-------------------------------------------------------------------------------------------------------------\n";
 
         std::string courseId;
         std::cout << "\nIngrese el codigo del curso a matricular (o 0 para salir): ";
