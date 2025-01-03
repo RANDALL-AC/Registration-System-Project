@@ -248,7 +248,7 @@ void System::registerStudent() {
     while (studentCourseCount < maxCoursesPerStudents) {
 
         std::cout << "\nCursos Disponibles:\n";
-        consultation.showAssignedCourses(courses, numCourses);
+        consultation.showAssignedCourses(courses);
         if (numCourses == 0) {
             std::cout << "No hay cursos disponibles\n";
         }
@@ -418,9 +418,9 @@ void System::showRegisteredStudent() {
 void System::showAssignedCourses() {
     std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
     std::cout << "Cursos ofertados:\n\n";
-    consultation.showAssignedCourses(courses, numCourses);
+    consultation.showAssignedCourses(courses);
 
-    for (int i = 0; i < numCourses; ++i) {
+    for (int i = 0; i < courses.size(); ++i) {
         if (courses[i].getNumSchedule() == 0) {
             std::cout << " - No hay horarios disponibles para este curso.";
         }
@@ -434,7 +434,7 @@ void System::showAssignedCourses() {
     bool found = false;
     for (int i = 0; i < students.size(); ++i) {
         if (students[i].getId() == studentId) {
-            consultation.showStudentCourses(students[i], registrations, numRegistrations);
+            consultation.showStudentCourses(students[i], registrations);
             found = true;
             break;
         }
