@@ -318,6 +318,31 @@ bool System::checkScheduleConflict(Student student, Schedule newSchedule) {
     return false;
 }
 
+void System::showConsultationMenu() {
+    int option;
+    do {
+        std::cout << "\n--- Menu de Consulta ---\n";
+        std::cout << "1. Estudiantes\n";
+        std::cout << "2. Cursos\n";
+        std::cout << "3. Volver\n";
+        std::cout << "Seleccione una opcion: ";
+        std::cin >> option;
+
+        switch (option) {
+        case 1:
+            showRegisteredStudent();
+            break;
+        case 2:
+            showAssignedCourses();
+            break;
+        case 3:
+            return;
+        default:
+            std::cout << "Opcion invalida. Intente de nuevo.\n";
+        }
+    } while (true);
+}
+
 void System::showRegisteredStudent() {
     std::string studentId;
     std::cout << "\nIngrese el ID del estudiante a buscar: ";
