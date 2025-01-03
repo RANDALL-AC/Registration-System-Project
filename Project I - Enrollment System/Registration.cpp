@@ -14,7 +14,7 @@ Student Registration::getStudent() {
     return this->student;
 }
 
-Course Registration::getCourse() {
+Course& Registration::getCourse() {
     return this->course;
 }
 

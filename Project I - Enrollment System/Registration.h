@@ -15,7 +15,7 @@ public:
     ~Registration();
 
     Student getStudent();
-    Course getCourse();
+    Course& getCourse();
     Schedule getSchedule();
 
     void setStudent(Student student);
