@@ -397,10 +397,10 @@ void System::showRegisteredStudent() {
     std::cin >> studentId;
 
     bool found = false;
-    for (int i = 0; i < numStudents; ++i) {
+    for (int i = 0; i < students.size(); ++i) {
         if (students[i].getId() == studentId) {
             int courseCount = 0;
-            for (int j = 0; j < numRegistrations; ++j) {
+            for (int j = 0; j < registrations.size(); ++j) {
                 if (registrations[j].getStudent().getId() == students[i].getId()) {
                     courseCount++;
                 }
@@ -432,7 +432,7 @@ void System::showAssignedCourses() {
     std::cin >> studentId;
 
     bool found = false;
-    for (int i = 0; i < numStudents; ++i) {
+    for (int i = 0; i < students.size(); ++i) {
         if (students[i].getId() == studentId) {
             consultation.showStudentCourses(students[i], registrations, numRegistrations);
             found = true;
