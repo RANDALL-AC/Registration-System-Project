@@ -1,13 +1,13 @@
 #include "Course.h"
 
 Course::Course() {
-    this->courseId = "";
     this->courseName = "";
+    this->courseId = "";
     this->credits = 0;
     this->assignedProfessor = "";
 }
 
-Course::Course(std::string courseId, std::string courseName, int credits, std::string assignedProfessor) {
+Course::Course(std::string courseName, std::string courseId, int credits, std::string assignedProfessor) {
     this->courseId = courseId;
     this->courseName = courseName;
     this->credits = credits;
