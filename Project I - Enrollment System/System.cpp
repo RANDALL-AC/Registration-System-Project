@@ -113,7 +113,12 @@ void System::addStudent() {
     std::cout << "Ingrese la carrera del estudiante: "; std::cin >> career;
     std::cout << "Ingrese el nivel del estudiante: "; std::cin >> level;
 
-    students[numStudents++] = Student(name, id, career, level);
+    if (numStudents >= students.size()) {
+        students.resize(students.size() + 1);
+    }
+    students[numStudents] = Student(name, id, career, level);
+    numStudents++;
+
     std::cout << "Estudiante agregado al sistema.\n";
 }
 
@@ -130,7 +135,12 @@ void System::addCourse() {
     std::cout << "Ingrese los creditos del curso: "; std::cin >> credits;
     std::cout << "Ingrese el profesor asignado: "; std::cin >> assignedProfessor;
 
-    courses[numCourses++] = Course(courseName, courseId, credits, assignedProfessor);
+    if (numCourses >= courses.size()) {
+        courses.resize(courses.size() + 1);
+    }
+    courses[numCourses] = Course(courseId, courseName, credits, assignedProfessor);
+    numCourses++;
+
     std::cout << "Curso agregado al sistema.\n";
 }
 
@@ -143,14 +153,14 @@ void System::addSchedule() {
     std::string day, startTime, endTime, classroom, courseId;
 
     std::cout << "\nCursos disponibles para asignar Horario:\n";
-    for (int i = 0; i < numCourses; ++i) {
+    for (int i = 0; i < courses.size(); ++i) {
         std::cout << i + 1 << ". " << courses[i].getCourseName() << " (ID: " << courses[i].getCourseId() << ")\n";
     }
     std::cout << "Seleccione el numero del curso: ";
     int courseSelection;
     std::cin >> courseSelection;
 
-    if (courseSelection < 1 || courseSelection > numCourses) {
+    if (courseSelection < 1 || courseSelection > courses.size()) {
         std::cout << "Seleccion de curso invalida.\n";
         return;
     }
@@ -167,9 +177,13 @@ void System::addSchedule() {
     std::cout << "Ingrese el aula: ";   std::cin >> classroom;
 
     Schedule newSchedule(day, startTime, endTime, classroom, courseId);
-    schedules[numSchedules++] = newSchedule;
+    if (numSchedules >= schedules.size()) {
+        schedules.resize(schedules.size() + 1);
+    }
+    schedules[numSchedules] = newSchedule;
+    numSchedules++;
 
-    for (int i = 0; i < numCourses; ++i) {
+    for (int i = 0; i < courses.size(); ++i) {
         if (courses[i].getCourseId() == courseId) {
             courses[i].addSchedule(newSchedule);
             break;
