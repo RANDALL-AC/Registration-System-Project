@@ -11,7 +11,7 @@
 class Consultation
 {
 public:
-    void showRegisteredStudent(Student student, int courseCount);
+    void showRegisteredStudent(Student student, int courseCount, int totalCost);
     void showAssignedCourses(Course courses[], int numCourses);
     void showStudentCourses(Student student, Registration registrations[], int numRegistrations);
     void showCourseSchedule(Course course);
