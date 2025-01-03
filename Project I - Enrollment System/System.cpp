@@ -317,3 +317,27 @@ bool System::checkScheduleConflict(Student student, Schedule newSchedule) {
     }
     return false;
 }
+
+void System::showRegisteredStudent() {
+    std::string studentId;
+    std::cout << "\nIngrese el ID del estudiante a buscar: ";
+    std::cin >> studentId;
+
+    bool found = false;
+    for (int i = 0; i < numStudents; ++i) {
+        if (students[i].getId() == studentId) {
+            int courseCount = 0;
+            for (int j = 0; j < numRegistrations; ++j) {
+                if (registrations[j].getStudent().getId() == students[i].getId()) {
+                    courseCount++;
+                }
+            }
+            consultation.showRegisteredStudent(students[i], courseCount, students[i].getTotalCost());
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        std::cout << "Estudiante no registrado o matriculado actualmente.\n";
+    }
+}
