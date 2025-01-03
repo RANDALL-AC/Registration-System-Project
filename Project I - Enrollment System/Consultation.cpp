@@ -29,9 +29,9 @@ void Consultation::showCourseSchedule(Course& course) {
 
 void Consultation::showAssignedCourses(std::vector<Course>& courses) {
     for (int i = 0; i < courses.size(); ++i) {
-        std::cout << i + 1 << ". ID: " << courses[i].getCourseId()
-            << ", Nombre: " << courses[i].getCourseName()
-            << ", Creditos: " << courses[i].getCredits()
+        std::cout << i + 1 << ". Nombre: " << courses[i].getCourseName()
+            << ", (ID: " << courses[i].getCourseId()          
+            << "), Creditos: " << courses[i].getCredits()
             << ", Profesor Asignado: " << courses[i].getAssignedProfessor() << "\n";
 
         showCourseSchedule(courses[i]);
