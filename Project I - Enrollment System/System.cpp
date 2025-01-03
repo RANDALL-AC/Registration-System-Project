@@ -226,7 +226,7 @@ void System::registerStudent() {
     std::cout << "Ingrese el ID del estudiante: ";
     std::cin >> studentId;
 
-    for (int i = 0; i < numStudents; ++i) {
+    for (int i = 0; i < students.size(); ++i) {
         if (students[i].getId() == studentId) {
             studentIndex = i;
             break;
@@ -239,7 +239,7 @@ void System::registerStudent() {
     }
 
     int studentCourseCount = 0;
-    for (int i = 0; i < numRegistrations; ++i) {
+    for (int i = 0; i < registrations.size(); ++i) {
         if (registrations[i].getStudent().getId() == students[studentIndex].getId()) {
             studentCourseCount++;
         }
@@ -252,7 +252,7 @@ void System::registerStudent() {
         if (numCourses == 0) {
             std::cout << "No hay cursos disponibles\n";
         }
-        for (int i = 0; i < numCourses; ++i) {
+        for (int i = 0; i < courses.size(); ++i) {
             if (courses[i].getNumSchedule() == 0) {
                 std::cout << " - No hay horarios disponibles para este curso.\n";
             }
@@ -269,7 +269,7 @@ void System::registerStudent() {
         }
 
         int courseIndex = -1;
-        for (int i = 0; i < numCourses; ++i) {
+        for (int i = 0; i < courses.size(); ++i) {
             if (courses[i].getCourseId() == courseId) {
                 courseIndex = i;
                 break;
@@ -282,7 +282,7 @@ void System::registerStudent() {
         }
 
         bool alreadyRegistered = false;
-        for (int i = 0; i < numRegistrations; ++i) {
+        for (int i = 0; i < registrations.size(); ++i) {
             if (registrations[i].getStudent().getId() == students[studentIndex].getId() &&
                 registrations[i].getCourse().getCourseId() == courses[courseIndex].getCourseId()) {
                 alreadyRegistered = true;
@@ -324,7 +324,12 @@ void System::registerStudent() {
         int registrationCost = courses[courseIndex].getCredits() * costPerCredit;
         students[studentIndex].addToTotalCost(registrationCost);
 
-        registrations[numRegistrations++] = Registration(students[studentIndex], courses[courseIndex], matchedSchedule);
+        if (numRegistrations >= registrations.size()) {
+            registrations.resize(registrations.size() + 1);
+        }
+        registrations[numRegistrations] = Registration(students[studentIndex], courses[courseIndex], matchedSchedule);
+        numRegistrations++;
+
         std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
         std::cout << "Matricula registrada exitosamente para el curso de " << courses[courseIndex].getCourseName()
             << " con el horario: Dia: ( " << matchedSchedule.getDay()
