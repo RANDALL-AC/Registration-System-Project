@@ -1,8 +1,10 @@
 #include <iostream>
+#include "System.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    System system;
+    system.showMenu();
 
     return 0;
 }
