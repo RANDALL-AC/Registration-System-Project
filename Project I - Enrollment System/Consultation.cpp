@@ -28,13 +28,22 @@ void Consultation::showCourseSchedule(Course& course) {
 }
 
 void Consultation::showAssignedCourses(std::vector<Course>& courses) {
+    if (courses.size() == 0) {
+        std::cout << "No hay cursos disponibles\n";
+        return;
+    }
+
     for (int i = 0; i < courses.size(); ++i) {
         std::cout << i + 1 << ". Nombre: " << courses[i].getCourseName()
-            << ", (ID: " << courses[i].getCourseId()          
+            << ", (ID: " << courses[i].getCourseId()
             << "), Creditos: " << courses[i].getCredits()
             << ", Profesor Asignado: " << courses[i].getAssignedProfessor() << "\n";
 
         showCourseSchedule(courses[i]);
+
+        if (courses[i].getNumSchedule() == 0) {
+            std::cout << " - No hay horarios disponibles para este curso.\n\n";
+        }
     }
 }
 
@@ -59,6 +68,7 @@ void Consultation::showStudentCourses(Student& student, std::vector<Registration
         std::cout << "\nEl estudiante no tiene cursos matriculados.\n";
     }
     else {
+        std::cout << "Maximo de cursos permitidos ( 4 ).\n";
         std::cout << "Total de cursos matriculados: " << courseCount << "\n";
     }
     std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
