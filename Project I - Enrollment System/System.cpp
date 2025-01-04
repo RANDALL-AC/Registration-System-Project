@@ -138,7 +138,7 @@ void System::addCourse() {
     if (numCourses >= courses.size()) {
         courses.resize(courses.size() + 1);
     }
-    courses[numCourses] = Course(courseId, courseName, credits, assignedProfessor);
+    courses[numCourses] = Course(courseName, courseId, credits, assignedProfessor);
     numCourses++;
 
     std::cout << "Curso agregado al sistema.\n";
@@ -167,7 +167,7 @@ void System::addSchedule() {
     courseId = courses[courseSelection - 1].getCourseId();
 
     if (courses[courseSelection - 1].getNumSchedule() >= maxSchedulePerCourse) {
-        std::cout << "Este curso ya ha alcanzado el número maximo de horarios permitidos.\n";
+        std::cout << "Este curso ya ha alcanzado el numero maximo de horarios permitidos.\n";
         return;
     }
 
@@ -248,15 +248,8 @@ void System::registerStudent() {
     while (studentCourseCount < maxCoursesPerStudents) {
 
         std::cout << "\nCursos Disponibles:\n";
+        std::cout << "-------------------------------------------------------------------------------------------------------------\n";
         consultation.showAssignedCourses(courses);
-        if (numCourses == 0) {
-            std::cout << "No hay cursos disponibles\n";
-        }
-        for (int i = 0; i < courses.size(); ++i) {
-            if (courses[i].getNumSchedule() == 0) {
-                std::cout << " - No hay horarios disponibles para este curso.\n";
-            }
-        }
         std::cout << "-------------------------------------------------------------------------------------------------------------\n";
 
         std::string courseId;
@@ -291,7 +284,7 @@ void System::registerStudent() {
         }
 
         if (alreadyRegistered) {
-            std::cout << "El curso ya ha sido matriculado por este estudiante.\n";
+            std::cout << "El curso ya ha sido matriculado.\n";
             continue;
         }
 
@@ -419,12 +412,6 @@ void System::showAssignedCourses() {
     std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
     std::cout << "Cursos ofertados:\n\n";
     consultation.showAssignedCourses(courses);
-
-    for (int i = 0; i < courses.size(); ++i) {
-        if (courses[i].getNumSchedule() == 0) {
-            std::cout << " - No hay horarios disponibles para este curso.";
-        }
-    }
     std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
 
     std::string studentId;
