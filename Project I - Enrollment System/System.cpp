@@ -1,4 +1,5 @@
 #include "System.h"
+#include <string>
 
 System::System() { 
     students.reserve(maxStudents);
@@ -107,11 +108,11 @@ void System::addStudent() {
         return;
     }
     std::string name, id, career; int level;
-
-    std::cout << "Ingrese el nombre del estudiante: "; std::cin >> name;
-    std::cout << "Ingrese la cedula del estudiante: "; std::cin >> id;
-    std::cout << "Ingrese la carrera del estudiante: "; std::cin >> career;
-    std::cout << "Ingrese el nivel del estudiante: "; std::cin >> level;
+    std::cin.ignore();
+    std::cout << "Ingrese el nombre del estudiante: "; std::getline(std::cin, name);
+    std::cout << "Ingrese la cedula del estudiante: "; std::getline(std::cin, id);
+    std::cout << "Ingrese la carrera del estudiante: "; std::getline(std::cin, career); 
+    std::cout << "Ingrese el nivel del estudiante: ";  std::cin >> level;
 
     if (numStudents >= students.size()) {
         students.resize(students.size() + 1);
@@ -129,11 +130,11 @@ void System::addCourse() {
     }
     std::string courseName, courseId, assignedProfessor;
     int credits;
-    
-    std::cout << "Ingrese el nombre del curso: "; std::cin >> courseName;
-    std::cout << "Ingrese el ID del curso: "; std::cin >> courseId; 
-    std::cout << "Ingrese los creditos del curso: "; std::cin >> credits;
-    std::cout << "Ingrese el profesor asignado: "; std::cin >> assignedProfessor;
+    std::cin.ignore();
+    std::cout << "Ingrese el nombre del curso: ";  std::getline(std::cin, courseName);
+    std::cout << "Ingrese el ID del curso: "; std::getline(std::cin, courseId);
+    std::cout << "Ingrese los creditos del curso: "; std::cin >> credits; std::cin.ignore();
+    std::cout << "Ingrese el profesor asignado: ";  std::getline(std::cin, assignedProfessor); 
 
     if (numCourses >= courses.size()) {
         courses.resize(courses.size() + 1);
@@ -172,7 +173,7 @@ void System::addSchedule() {
     }
 
     std::cout << "Ingrese el dia del horario: ";    std::cin >> day;
-    std::cout << "Ingrese la hora de inicio (HHMM): ";    std::cin >> startTime;
+    std::cout << "Ingrese la hora de inicio (HHMM): ";  std::cin >> startTime; 
     std::cout << "Ingrese la hora de fin (HHMM): ";   std::cin >> endTime;
     std::cout << "Ingrese el aula: ";   std::cin >> classroom;
 
@@ -222,9 +223,9 @@ void System::registerStudent() {
 
     int studentIndex = -1;
     std::string studentId;
-
+    std::cin.ignore();
     std::cout << "Ingrese el ID del estudiante: ";
-    std::cin >> studentId;
+    std::getline(std::cin, studentId);
 
     for (int i = 0; i < students.size(); ++i) {
         if (students[i].getId() == studentId) {
@@ -254,7 +255,7 @@ void System::registerStudent() {
 
         std::string courseId;
         std::cout << "\nIngrese el codigo del curso a matricular (o 0 para salir): ";
-        std::cin >> courseId;
+        std::getline(std::cin, courseId);
 
         if (courseId == "0") {
             std::cout << "Saliendo del proceso de matriculacion.\n";
@@ -288,27 +289,16 @@ void System::registerStudent() {
             continue;
         }
 
-        std::string day, startTime, endTime;
-        std::cout << "Ingrese el dia del horario: "; std::cin >> day;
-        std::cout << "Ingrese la hora de inicio (HHMM): "; std::cin >> startTime;
-        std::cout << "Ingrese la hora de fin (HHMM): ";  std::cin >> endTime;
-
-        bool scheduleMatch = false;
-        Schedule matchedSchedule;
+        bool conflict = false;
         for (int i = 0; i < courses[courseIndex].getNumSchedule(); ++i) {
             Schedule schedule = courses[courseIndex].getSchedule(i);
-            if (schedule.getDay() == day && schedule.getStartTime() == startTime && schedule.getEndTime() == endTime) {
-                matchedSchedule = schedule;
-                scheduleMatch = true;
+            if (checkScheduleConflict(students[studentIndex], schedule)) {
+                conflict = true;
                 break;
             }
         }
-        if (!scheduleMatch) {
-            std::cout << "El horario ingresado no coincide con ningun horario asignado a este curso.\n";
-            continue;
-        }
 
-        if (checkScheduleConflict(students[studentIndex], matchedSchedule)) {
+        if (conflict) {
             std::cout << "Conflicto de horario detectado. No se puede agregar el horario.\n";
             continue;
         }
@@ -320,14 +310,15 @@ void System::registerStudent() {
         if (numRegistrations >= registrations.size()) {
             registrations.resize(registrations.size() + 1);
         }
-        registrations[numRegistrations] = Registration(students[studentIndex], courses[courseIndex], matchedSchedule);
+        registrations[numRegistrations] = Registration(students[studentIndex], courses[courseIndex], courses[courseIndex].getSchedule(0));
         numRegistrations++;
 
         std::cout << "\n-------------------------------------------------------------------------------------------------------------\n";
-        std::cout << "Matricula registrada exitosamente para el curso de " << courses[courseIndex].getCourseName()
-            << " con el horario: Dia: ( " << matchedSchedule.getDay()
-            << ", Inicio: " << matchedSchedule.getStartTime()
-            << ", Fin: " << matchedSchedule.getEndTime() << " ).\n";
+        std::cout << "Matricula registrada para el curso de " << courses[courseIndex].getCourseName()
+            << " con el horario: ( Dia: " << courses[courseIndex].getSchedule(0).getDay()
+            << ", Aula: " << courses[courseIndex].getSchedule(0).getClassroom()
+            << ", Inicio: " << courses[courseIndex].getSchedule(0).getStartTime()
+            << ", Fin: " << courses[courseIndex].getSchedule(0).getEndTime() << " ).\n";
 
         std::cout << "El costo para este curso es de: " << registrationCost << " colones.\n";
         std::cout << "El costo total acumulado de la matricula es de: " << students[studentIndex].getTotalCost()
@@ -344,6 +335,10 @@ bool System::checkScheduleConflict(Student student, Schedule newSchedule) {
             Schedule existingSchedule = registrations[i].getSchedule();
 
             if (existingSchedule.getDay() != newSchedule.getDay()) {
+                continue;
+            }
+
+            if (existingSchedule.getClassroom() != newSchedule.getClassroom()) {
                 continue;
             }
 
