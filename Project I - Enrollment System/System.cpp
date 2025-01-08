@@ -1,11 +1,40 @@
 #include "System.h"
 #include <string>
 
-System::System() { 
+System::System()
+    : students{
+        Student("Evelyn Salazar A.", "601230123", "Veterinaria", 3),
+        Student("Randall Arauz C.", "604940262", "Ing. Sistemas", 4),
+        Student("Brayner Paez T.", "607890789", "Contabilidad", 1),
+        Student("David Meza S.", "604560456", "Ing. Forestal,", 4),
+        Student("Alexa Mitre B.", "601590159", "Biologia", 2)
+    },
+    courses{
+        Course("Etica Profesional", "ETP126", 3, "Smith Ortega"),
+        Course("Matematicas", "MAT 202", 3, "Eli Montes"),
+        Course("Ingles", "LIX 410", 4, "Carlos Brown"),
+        Course("Programacion", "EIF201", 4, "Juan Gamboa"),
+        Course("Biologia", "NAT 325", 5, "Roger Dias")
+    },
+    schedules{
+        Schedule("Lunes", "08:00", "12:00", "9", "Biologia"),
+        Schedule("Lunes", "13:00", "16:00", "9", "Globalizacion y Cultura"),
+        Schedule("Lunes", "08:00", "12:00", "4", "Ingles"),
+        Schedule("Lunes", "08:00", "12:00", "4", "Matematicas"),
+        Schedule("Martes", "13:00", "16:00", "9", "Programacion"),
+    },
+    numCourses(5),
+    numStudents(5),
+    numSchedules(5)
+{
     students.reserve(maxStudents);
     schedules.reserve(maxSchedules);
     courses.reserve(maxCourses);
     registrations.reserve(maxStudents * maxCoursesPerStudents);
+
+    for (int i = 0; i < courses.size(); ++i) {
+        courses[i].addSchedule(schedules[i]);
+    }
 }
 
 void System::showMenu() {
